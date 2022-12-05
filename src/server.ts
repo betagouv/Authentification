@@ -9,7 +9,7 @@ const server = () => {
     
     const app: Application = express();
 
-    app.use(favicon(path.join(__dirname, 'images', 'favicon-32x32.png')))
+    app.use(favicon(path.join(__dirname, '../static', 'images', 'favicon-32x32.png')))
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'ejs');
     app.use(express.static('static'));
