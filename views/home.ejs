@@ -1,8 +1,8 @@
-<%- include('partials/header.ejs'); %> <%- include('partials/menu.ejs',
-{userEmail: userEmail}); %>
+<%- include('partials/skiplink.ejs'); %> <%- include('partials/header.ejs'); %> <%- include('partials/menu.ejs',
+{userEmail: userEmail}); %> 
 <div>
   <% if (!userEmail) { %>
-  <div class="fr-background-alt--blue-france fr-py-5w">
+  <div class="fr-background-alt--blue-france fr-py-5w" id="contenu">
     <div class="fr-container">
       <h1 class="fr-grid-row fr-grid-row--center">Pourquoi s'identifier en tant qu'agent ?</h1>
             <div class="fr-m-6w">
@@ -13,7 +13,8 @@
           </div>
         </div>
   <%- include('partials/eligibility.ejs') %>
-  <%- include('partials/explantion.ejs') %>
+  <%- include('partials/explanation.ejs') %>
+  <%- include('partials/contact.ejs') %>
   <% } %>
 </div>
 <%- include('partials/footer.ejs') %>
