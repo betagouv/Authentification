@@ -1,15 +1,13 @@
 import {Router} from "express";
-import {generators, Issuer} from 'openid-client';
-import {appUrl} from "./config/config";
-import {getSystemErrorMap} from "util";
-import {statistiquesController, fonctionnementController, homeController, ressourcesController, documentationController} from "./controllers";
+import {loginController, callbackController, logoutController} from "./demoControllers";
+import {statistiquesController, fonctionnementController, homeController, ressourcesController, documentationController} from './pageController'
 
 const demoRouter = Router();
 
 demoRouter.get('/', homeController);
-// demoRouter.get('/login', loginController);
-// demoRouter.get('/cb', callbackController);
-// demoRouter.get('/logout', logoutController);
+demoRouter.get('/login', loginController);
+demoRouter.get('/cb', callbackController);
+demoRouter.get('/logout', logoutController);
 demoRouter.get('/fonctionnement', fonctionnementController)
 demoRouter.get('/ressources', ressourcesController)
 demoRouter.get('/documentation', documentationController)
