@@ -37,50 +37,72 @@ export const homeController: RequestHandler = async (req, res) => {
     });
 };
 
-export const loginController: RequestHandler = async (req, res) => {
-    const email: string | undefined = req.query.email?.toString();
-    // if (!email) return res.redirect('/');
+export const fonctionnementController: RequestHandler = async (req, res) => {
 
-    const client = await getClient()
-    const code_verifier = generators.codeVerifier();
-    // store the code_verifier in your framework's session mechanism, if it is a cookie based solution
-    // it should be httpOnly (not readable by javascript) and encrypted.
-    req.session.code_verifier = code_verifier;
-    req.session.save()
-
-    const code_challenge = generators.codeChallenge(code_verifier);
-
-    const redirect_url = client.authorizationUrl({
-        scope: 'openid',
-        code_challenge,
-        code_challenge_method: 'S256',
-        login_hint: email
-    });
-
-    res.redirect(redirect_url)
+    return res.render('fonctionnement', {});
 };
 
-export const callbackController: RequestHandler = async (req, res) => {
-    const client = await getClient()
-    const params = client.callbackParams(req);
+export const ressourcesController: RequestHandler = async (req, res) => {
 
-    // if (!params || !req.session.code_verifier) return res.redirect('/');
-
-    const tokenSet = await client.callback(appUrl + urlCallback, params, {code_verifier: req.session.code_verifier});
-    req.session.code_verifier = undefined;
-    // console.log('received and validated tokens %j', tokenSet);
-    // console.log('validated ID Token claims %j', tokenSet.claims());
-
-    const {access_token} = tokenSet;
-    // console.log('access_token %j', access_token);
-    // const userinfo = await client.userinfo(access_token!);
-    // req.session.user = userinfo.preferred_username || 'default_email';
-    req.session.access_token = access_token;
-    // console.log('userinfo %j', userinfo);
-
-    return res.redirect('/')
+    return res.render('ressources', {});
 };
 
-export const logoutController: RequestHandler = async (req, res) => {
-    req.session.destroy(() => res.redirect('/'))
-}
+export const documentationController: RequestHandler = async (req, res) => {
+
+    return res.render('documentation', {});
+};
+
+export const statistiquesController: RequestHandler = async (req, res) => {
+
+    return res.render('statistiques', {});
+};
+
+
+
+// export const loginController: RequestHandler = async (req, res) => {
+//     const email: string | undefined = req.query.email?.toString();
+//     // if (!email) return res.redirect('/');
+
+//     const client = await getClient()
+//     const code_verifier = generators.codeVerifier();
+//     // store the code_verifier in your framework's session mechanism, if it is a cookie based solution
+//     // it should be httpOnly (not readable by javascript) and encrypted.
+//     req.session.code_verifier = code_verifier;
+//     req.session.save()
+
+//     const code_challenge = generators.codeChallenge(code_verifier);
+
+//     const redirect_url = client.authorizationUrl({
+//         scope: 'openid',
+//         code_challenge,
+//         code_challenge_method: 'S256',
+//         login_hint: email
+//     });
+
+//     res.redirect(redirect_url)
+// };
+
+// export const callbackController: RequestHandler = async (req, res) => {
+//     const client = await getClient()
+//     const params = client.callbackParams(req);
+
+//     // if (!params || !req.session.code_verifier) return res.redirect('/');
+
+//     const tokenSet = await client.callback(appUrl + urlCallback, params, {code_verifier: req.session.code_verifier});
+//     req.session.code_verifier = undefined;
+//     // console.log('received and validated tokens %j', tokenSet);
+//     // console.log('validated ID Token claims %j', tokenSet.claims());
+
+//     const {access_token} = tokenSet;
+//     // console.log('access_token %j', access_token);
+//     // const userinfo = await client.userinfo(access_token!);
+//     // req.session.user = userinfo.preferred_username || 'default_email';
+//     req.session.access_token = access_token;
+//     // console.log('userinfo %j', userinfo);
+
+//     return res.redirect('/')
+// };
+
+// export const logoutController: RequestHandler = async (req, res) => {
+//     req.session.destroy(() => res.redirect('/'))
+// }
