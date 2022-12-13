@@ -1,7 +1,7 @@
 import assert from "assert";
 import {RequestHandler} from "express";
 import {generators, Issuer} from "openid-client";
-import {appUrl} from "./config/config";
+import {appUrl} from "../config/config";
 
 const urlCallback = "/cb";
 

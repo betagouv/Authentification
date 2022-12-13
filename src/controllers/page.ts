@@ -1,6 +1,6 @@
 import {RequestHandler} from "express";
-import {appUrl} from "./config/config";
-import {getClient} from './demoControllers'
+import {appUrl} from "../config/config";
+import {getClient} from './demo'
 
 
 
