@@ -6,7 +6,7 @@ export const homeController: RequestHandler = async (
   req: Request,
   res: Response
 ) => {
-  let userEmail = null;
+  let userEmail: string | null = null;
   if (req.session.access_token) {
     const client = await getClient();
     const userinfo = await client.userinfo(req.session.access_token);
