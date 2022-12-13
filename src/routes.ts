@@ -1,6 +1,6 @@
 import {Router} from "express";
-import {loginController, callbackController, logoutController} from "./demoControllers";
-import {statistiquesController, fonctionnementController, homeController, ressourcesController, documentationController} from './pageController'
+import {loginController, callbackController, logoutController} from "./controllers/demo";
+import {statistiquesController, fonctionnementController, homeController, ressourcesController, documentationController} from './controllers/page'
 
 const demoRouter = Router();
 
