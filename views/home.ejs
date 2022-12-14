@@ -1,5 +1,5 @@
 <%- include('partials/skiplink.ejs'); %> <%- include('partials/header.ejs'); %> <%- include('partials/menu.ejs',
-{userEmail: userEmail}); %> 
+{userEmail: userEmail}, {loginUrl: loginUrl}); %> 
 <div>
   <% if (!userEmail) { %>
   <div class="fr-background-alt--blue-france fr-py-5w" id="contenu">
@@ -12,7 +12,7 @@
             </div>
           </div>
         </div>
-  <%- include('partials/eligibility.ejs') %>
+  <%- include('partials/eligibility.ejs', {loginUrl: loginUrl}) %>
   <%- include('partials/explanation.ejs') %>
   <%- include('partials/contact.ejs') %>
   <% } %>
