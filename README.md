@@ -23,5 +23,3 @@ Les librairies utilisées :
 - Lancer le serveur en local : `npm run-script dev`
 
 **http://localhost:3000 is ready !**
-
-# Déploiement 
