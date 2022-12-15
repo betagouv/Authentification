@@ -23,6 +23,31 @@
                         <p class="fr-header__service-tagline"></p>
                     </div>
                 </div>
+
+
+                <div class="fr-header__tools">
+                    <div class="fr-header__tools-links">
+                        <ul class="fr-links-group">
+                            <% if (userEmail) { %>
+                                <li>
+                                    <span class="fr-link" href="">
+                                        Connecté en tant que : <%= userEmail %>
+                                    </span>
+                                </li>
+                                <li>
+                                    <a class="fr-link fr-icon-logout-box-r-fill" href="/logout">
+                                        Déconnexion
+                                    </a>
+                                </li>
+                            <% } else { %>
+                                <li>
+                                    <a class="fr-link fr-link--lg" href="<%= loginUrl %>">Connexion avec Authentification</a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

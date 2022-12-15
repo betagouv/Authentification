@@ -1,20 +1,18 @@
 <%- include('partials/skiplink.ejs'); %> <%- include('partials/header.ejs'); %> <%- include('partials/menu.ejs',
 {userEmail: userEmail}, {loginUrl: loginUrl}); %> 
 <div>
-  <% if (!userEmail) { %>
   <div class="fr-background-alt--blue-france fr-py-5w" id="contenu">
     <div class="fr-container">
-      <h1 class="fr-grid-row">Pourquoi s'identifier en tant qu'agent ?</h1>
-            <div class="fr-m-6w">
-              Authentification est un service qui permet aux agents et agentes de
-              l'état de pouvoir s'identifier à différents services numériques
-              grâce à un code reçu par Tchap ou par email. <br>Si vous souhaitez des informations sur notre service ou l'intégrer à votre administration, merci de nous contacter à l'adresse mail <a href="mailto:authentification@beta.gouv.fr">authentification@beta.gouv.fr</a>
-            </div>
-          </div>
+      <h1 class="fr-grid-row text-center fr-pl-5w">Pourquoi s'identifier en tant qu'agent ?</h1>
+        <div class="fr-m-6w">
+          Authentification est un service qui permet aux agents et agentes de
+          l'état de pouvoir s'identifier à différents services numériques
+          grâce à un code reçu par Tchap ou par email. <br>Si vous souhaitez des informations sur notre service ou l'intégrer à votre administration, merci de nous contacter à l'adresse mail <a href="mailto:authentification@beta.gouv.fr">authentification@beta.gouv.fr</a>
         </div>
-  <%- include('partials/eligibility.ejs', {loginUrl: loginUrl}) %>
+    </div>
+  </div>
+  <%- include('partials/eligibility.ejs') %>
   <%- include('partials/explanation.ejs') %>
   <%- include('partials/contact.ejs') %>
-  <% } %>
 </div>
 <%- include('partials/footer.ejs') %>
