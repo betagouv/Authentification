@@ -58,3 +58,10 @@ th.highlighted_column:after, td.highlighted_column:after {
     right: -15px;
 }
 
+.js-eligibility-hidden{
+    display: none;
+}
+
+.js-eligibility-display{
+    margin-bottom: -3rem;
+}
