@@ -1,40 +1,59 @@
-import express, {Application} from 'express'
-import session from 'express-session';
+import express, { Application } from "express";
+import session from "express-session";
 import helmet from "helmet";
 import path from "path";
 import demoRouter from "./routes";
-import favicon from "serve-favicon"
+import favicon from "serve-favicon";
+import { Request, Response, NextFunction } from "express";
+import { getClient } from "./controllers/demo";
 
 const server = () => {
-    
-    const app: Application = express();
+  const app: Application = express();
 
-    app.use(favicon(path.join(__dirname, '../static', 'images', 'favicon-32x32.png')))
-    app.set('views', path.join(__dirname, '../views'));
-    app.set('view engine', 'ejs');
-    app.use(express.static('static'));
+  app.use(
+    favicon(path.join(__dirname, "../static", "images", "favicon-32x32.png"))
+  );
+  app.set("views", path.join(__dirname, "../views"));
+  app.set("view engine", "ejs");
+  app.use(express.static("static"));
 
-    app.use('/dsfr',
-        express.static(path.join(__dirname,
-            '../node_modules/@gouvfr/dsfr/dist')));
+  app.use(
+    "/dsfr",
+    express.static(path.join(__dirname, "../node_modules/@gouvfr/dsfr/dist"))
+  );
 
-    app.use(session(
-        {
-            secret: 'dev',
-            resave: false,
-            saveUninitialized: true,
-            cookie: {secure: false} // fixme: not for prod
-        },
-    ))
-    app.use(helmet({
-        contentSecurityPolicy: false,
-    }));
+  app.use(
+    session({
+      secret: "dev",
+      resave: false,
+      saveUninitialized: true,
+      cookie: { secure: false }, // fixme: not for prod
+    })
+  );
 
-    app.set('trust proxy', 1);
+  async function userEmail(req: Request, res: Response, next: NextFunction) {
+    global.userEmail = "toto@tata.com";
+    if (req.session.access_token) {
+      const client = await getClient();
+      const userinfo = await client.userinfo(req.session.access_token);
+      global.userEmail = userinfo.preferred_username || userinfo.sub;
+    }
+    next();
+  }
 
-    app.use(demoRouter);
+  app.use(userEmail);
 
-    return app;
-}
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+    })
+  );
+
+  app.set("trust proxy", 1);
+
+  app.use(demoRouter);
+
+  return app;
+};
 
 export default server;
