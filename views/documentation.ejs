@@ -1,5 +1,48 @@
-<%- include('partials/skiplink.ejs'); %> <%- include('partials/header.ejs'); %> <%- include('partials/menu.ejs', {}); %> 
+<%- include('partials/skiplink.ejs'); %> <%- include('partials/header.ejs'); %> <%- include('partials/menu.ejs', {userEmail: userEmail, loginUrl: loginUrl}); %> 
+<!-- <% if(userEmail){ userEmail: defined }else{ userEmail : undefined } %> -->
 <div class="fr-container">
     <h1 class="fr-grid-row fr-py-5w">Documentation</h1>
+    <p>Installez les dépendances nécessaires en utilisant npm :</p>
+    <pre><code class="language-none">npm install express passport passport-openidconnect</code></pre>
+    <p class="fr-mt-2w">Configurez le fournisseur d'identité Keycloak en tant que fournisseur d'OpenID Connect dans votre application.
+    Vous aurez besoin de l'URL d'autorisation de Keycloak, de l'URL de token d'accès de Keycloak et du secret client de Keycloak.</p>
+    <p>Configurez Passport.js et passport-openidconnect pour utiliser Keycloak comme fournisseur d'identité :</p>
+    <pre><code class="language-js">
+        const passport = require('passport');
+        const OIDCStrategy = require('passport-openidconnect').Strategy;
+
+        passport.use('oidc', new OIDCStrategy({
+            issuer: 'https://keycloak.example.com/auth/realms/myrealm',
+            authorizationURL: 'https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/auth',
+            tokenURL: 'https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/token',
+            userInfoURL: 'https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/userinfo',
+            clientID: 'my-client-id',
+            clientSecret: 'my-client-secret',
+            callbackURL: 'http://localhost:3000/auth/callback'
+          }, (issuer, sub, profile, accessToken, refreshToken, done) => {
+            // process the login and return the user profile
+            return done(null, profile);
+          }));
+    </code></pre>
+    <p class="fr-mt-2w">Créez une route de redirection vers Keycloak pour démarrer l'authentification :</p>
+    <pre><code class="language-js">app.get('/login', passport.authenticate('oidc'));</code></pre>
+    <p class="fr-mt-2w">Créez une route de callback pour traiter la réponse d'authentification de Keycloak une fois l'authentification terminée :</p>
+    <pre><code class="language-js">
+        app.get('/auth/callback', passport.authenticate('oidc', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+          }));
+    </code></pre>
+    <p class="fr-mt-2w">Protégez les routes de votre application en vérifiant si l'utilisateur est authentifié avant de permettre l'accès:</p>
+    <pre><code class="language-js">
+        app.get('/protected', (req, res, next) => {
+            if (!req.isAuthenticated()) {
+              return res.redirect('/login');
+            }
+            // continue processing the request if the user is authenticated
+            next();
+          });
+    </code></pre>
+    <p class="fr-mt-2w">Vous pouvez également utiliser des sessions pour stocker l'état d'authentification de l'utilisateur entre les requêtes. Pour ce faire, installez et configurez le middleware de session de votre choix (par exemple, express-session)</p>
 </div>
 <%- include('partials/footer.ejs') %>
