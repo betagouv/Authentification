@@ -2,12 +2,42 @@
 <%- include('partials/header.ejs'); %> 
 <%- include('partials/menu.ejs'); %> 
 <div class="fr-container">
-    <h1 class="fr-grid-row fr-py-5w">Documentation</h1>
-    <p>Installez les dépendances nécessaires en utilisant npm :</p>
+    <h1 class="fr-grid-row fr-mt-5w fr-mb-2w">Documentation</h1>
+    <em>N'hésitez pas à nous poser des questions directement à cette adresse:
+      <a href="mailto:authentification@beta.gouv.fr">authentification@beta.gouv.fr</a>
+    </em>
+    <h3 class="fr-mb-2w fr-mt-4w">Prérequis</h3>
+    <p class="fr-mb-1w">Pour bénéficier d'Authentification votre service doit connecter des agents publics disposant 
+      d'une adresse mail officielle, et/ou d'un compte Tchap.</p>
+    <p class="fr-mb-1w">Ce que vous devez nous fournir :</p>
+      <ul class="fr-ml-3w">
+        <li>un nom qui servira d'identifiant pour le service</li>
+        <li>une url de retour ou "callback"</li>
+        <li>une adresse mail pour le support</li>
+        <li>les identifiants d'un compte Tchap, si vous voulez avoir un bot personnalisé</li>
+      </ul>
+    <h3 class="fr-mt-4w fr-mb-2w">Pour implémenter Authentification</h3>
+    <p class="fr-mb-1w">Vous recevrez alors :</p>
+    <ul class="fr-ml-3w">
+      <li>votre identifiant client et le secret associé</li>
+      <li>l'url du serveur pour réaliser l'implémentation</li>
+    </ul>
+    <p class="fr-mb-1w">En fonction du langage utilisé par votre application, 
+      vous pourrez choisir une librairie OpenID. Void quelques exemples :</p>
+    <ul class="fr-ml-3w">
+      <li>Python : oic</li>
+      <li>Node.js : passport-openidconnect</li>
+      <li>Ruby : omniauth-openid-connect</li>
+      <li>PHP : league/openid-client</li>
+    </ul>
+    <h3 class="fr-mt-4w fr-mb-3w">Exemple d'implémentation en node.js avec passport.js</h3>
+    <p class="fr-mb-1w">Installez les dépendances nécessaires en utilisant npm :</p>
     <pre><code class="language-none">npm install express passport passport-openidconnect</code></pre>
-    <p class="fr-mt-2w">Configurez le fournisseur d'identité Keycloak en tant que fournisseur d'OpenID Connect dans votre application.
-    Vous aurez besoin de l'URL d'autorisation de Keycloak, de l'URL de token d'accès de Keycloak et du secret client de Keycloak.</p>
-    <p>Configurez Passport.js et passport-openidconnect pour utiliser Keycloak comme fournisseur d'identité :</p>
+    
+    <p class="fr-mt-3w fr-mb-3w">Configurez le fournisseur d'identité Keycloak en tant que fournisseur d'OpenID Connect dans votre application.
+    Vous aurez besoin des URL du serveur d'authentification, ici un serveur générique Keycloak.</p>
+    
+    <p class="fr-mb-1w">Configurez Passport.js et passport-openidconnect pour utiliser Keycloak comme fournisseur d'identité :</p>
     <pre><code class="language-js">
         const passport = require('passport');
         const OIDCStrategy = require('passport-openidconnect').Strategy;
@@ -19,22 +49,24 @@
             userInfoURL: 'https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/userinfo',
             clientID: 'my-client-id',
             clientSecret: 'my-client-secret',
-            callbackURL: 'http://localhost:3000/auth/callback'
+            callbackURL: 'http://www.monservice.fr/auth/callback'
           }, (issuer, sub, profile, accessToken, refreshToken, done) => {
             // process the login and return the user profile
             return done(null, profile);
           }));
     </code></pre>
-    <p class="fr-mt-2w">Créez une route de redirection vers Keycloak pour démarrer l'authentification :</p>
+
+    <p class="fr-mt-4w fr-mb-1w">Créez une route de redirection vers Keycloak pour démarrer l'authentification :</p>
     <pre><code class="language-js">app.get('/login', passport.authenticate('oidc'));</code></pre>
-    <p class="fr-mt-2w">Créez une route de callback pour traiter la réponse d'authentification de Keycloak une fois l'authentification terminée :</p>
+   
+    <p class="fr-mt-4w fr-mb-1w">Créez une route de callback pour traiter la réponse d'authentification de Keycloak une fois l'authentification terminée :</p>
     <pre><code class="language-js">
         app.get('/auth/callback', passport.authenticate('oidc', {
             successRedirect: '/',
             failureRedirect: '/login'
           }));
     </code></pre>
-    <p class="fr-mt-2w">Protégez les routes de votre application en vérifiant si l'utilisateur est authentifié avant de permettre l'accès:</p>
+    <p class="fr-mt-4w fr-mb-1w">Protégez les routes de votre application en vérifiant si l'utilisateur est authentifié avant de permettre l'accès:</p>
     <pre><code class="language-js">
         app.get('/protected', (req, res, next) => {
             if (!req.isAuthenticated()) {
@@ -44,6 +76,6 @@
             next();
           });
     </code></pre>
-    <p class="fr-mt-2w">Vous pouvez également utiliser des sessions pour stocker l'état d'authentification de l'utilisateur entre les requêtes. Pour ce faire, installez et configurez le middleware de session de votre choix (par exemple, express-session)</p>
+    <p class="fr-mt-4w fr-mb-8w">Vous pouvez également utiliser des sessions pour stocker l'état d'authentification de l'utilisateur entre les requêtes. Pour ce faire, installez et configurez le middleware de session de votre choix (par exemple, express-session)</p>
 </div>
 <%- include('partials/footer.ejs') %>
