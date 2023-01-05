@@ -39,3 +39,10 @@ export const statistiquesController: RequestHandler = async (
 ) => {
   return res.render("statistiques", {});
 };
+
+export const glossaireController: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
+  return res.render("glossaire", {});
+};
