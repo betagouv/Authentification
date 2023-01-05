@@ -65,3 +65,9 @@ th.highlighted_column:after, td.highlighted_column:after {
 .js-eligibility-display{
     margin-bottom: -3rem;
 }
+
+.fr-tile__body{
+    align-items: start;
+    text-align: start;
+    justify-content: start;
+}
