@@ -1,8 +1,22 @@
-import { RequestHandler, Request, Response } from "express";
+import { RequestHandler, Request, Response, NextFunction } from "express";
 import { generators, Issuer } from "openid-client";
 import { appUrl } from "../config/config";
 
 const urlCallback = "/cb";
+
+export async function getUserEmail(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  if (!req.session.user && req.session.access_token) {
+    const client = await getClient();
+    const userinfo = await client.userinfo(req.session.access_token);
+    req.session.user = userinfo.preferred_username || userinfo.sub;
+  }
+  res.locals.user = req.session.user;
+  next();
+}
 
 export const getClient = async () => {
   console.log(process.env.PROVIDER_URL);
@@ -66,7 +80,7 @@ export const callbackController: RequestHandler = async (
   const { access_token } = tokenSet;
   // console.log('access_token %j', access_token);
   // const userinfo = await client.userinfo(access_token!);
-  // req.session.user = userinfo.preferred_username || 'default_email';
+  //req.session.user = userinfo.preferred_username || "default_email";
   req.session.access_token = access_token;
   // console.log('userinfo %j', userinfo);
 

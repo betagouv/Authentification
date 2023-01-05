@@ -4,8 +4,8 @@ import helmet from "helmet";
 import path from "path";
 import demoRouter from "./routes";
 import favicon from "serve-favicon";
-import { Request, Response, NextFunction } from "express";
-import { getClient } from "./controllers/demo";
+import { getUserEmail } from "./controllers/demo";
+import { sessionSecret } from "./config/config";
 
 const server = () => {
   const app: Application = express();
@@ -24,24 +24,14 @@ const server = () => {
 
   app.use(
     session({
-      secret: "dev",
+      secret: sessionSecret,
       resave: false,
       saveUninitialized: true,
-      cookie: { secure: false }, // fixme: not for prod
+      cookie: { secure: true },
     })
   );
 
-  async function userEmail(req: Request, res: Response, next: NextFunction) {
-    global.userEmail = "toto@tata.com";
-    if (req.session.access_token) {
-      const client = await getClient();
-      const userinfo = await client.userinfo(req.session.access_token);
-      global.userEmail = userinfo.preferred_username || userinfo.sub;
-    }
-    next();
-  }
-
-  app.use(userEmail);
+  app.use(getUserEmail);
 
   app.use(
     helmet({

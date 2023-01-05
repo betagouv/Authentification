@@ -28,10 +28,10 @@
                 <div class="fr-header__tools">
                     <div class="fr-header__tools-links">
                         <ul class="fr-links-group">
-                            <% if (locals.userEmail) { %>
+                            <% if (user) { %>
                                 <li>
                                     <span class="fr-link" href="">
-                                        Connecté en tant que : <%= userEmail %>
+                                        Connecté en tant que : <%= user %>
                                     </span>
                                 </li>
                                 <li>
