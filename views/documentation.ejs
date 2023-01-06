@@ -1,8 +1,10 @@
-<%- include('partials/skiplink.ejs'); %>
 <%- include('partials/header.ejs'); %> 
+<%- include('partials/skiplink.ejs'); %>
 <%- include('partials/menu.ejs'); %> 
 <div class="fr-container">
     <h1 class="fr-grid-row fr-mt-5w fr-mb-2w">Documentation</h1>
+    <h3 class="fr-mb-2w fr-mt-4w">Introduction</h3>
+    <p class="fr-mb-1w">OpenID est un protocole d'authentification qui permet à un utilisateur de s'authentifier sur différents sites web en utilisant un seul compte. Keycloak est une plateforme open source qui peut être utilisée pour mettre en place une librairie d'authentification avec OpenID.</p>
     <em>N'hésitez pas à nous poser des questions directement à cette adresse:
       <a href="mailto:authentification@beta.gouv.fr">authentification@beta.gouv.fr</a>
     </em>
@@ -16,27 +18,33 @@
         <li>une adresse mail pour le support</li>
         <li>les identifiants d'un compte Tchap, si vous voulez avoir un bot personnalisé</li>
       </ul>
-    <h3 class="fr-mt-4w fr-mb-2w">Pour implémenter Authentification</h3>
-    <p class="fr-mb-1w">Vous recevrez alors :</p>
-    <ul class="fr-ml-3w">
-      <li>votre identifiant client et le secret associé</li>
-      <li>l'url du serveur pour réaliser l'implémentation</li>
-    </ul>
-    <p class="fr-mb-1w">En fonction du langage utilisé par votre application, 
-      vous pourrez choisir une librairie OpenID. Void quelques exemples :</p>
-    <ul class="fr-ml-3w">
-      <li>Python : oic</li>
-      <li>Node.js : passport-openidconnect</li>
-      <li>Ruby : omniauth-openid-connect</li>
-      <li>PHP : league/openid-client</li>
-    </ul>
-    <h3 class="fr-mt-4w fr-mb-3w">Exemple d'implémentation en node.js avec passport.js</h3>
+    <h3 class="fr-mb-2w fr-mt-4w">Premiers échanges d'informations :</h3>
+      <ol class="fr-ml-3w">
+        <li>Transmettez-nous le nom de domaine de votre site et l'url de retour qui servira à la réponse du serveur Keycloak.</li>
+        <li>Nous pourrons alors vous communiquer les urls nécessaires à l'implémentation, ainsi que l'identifiant et le secret associé pour configurer votre client.</li>
+      </ol>
+    <h3 class="fr-mb-2w fr-mt-4w">Intégration de l'authentification de votre côté :</h3>
+    <ol class="fr-ml-3w">
+      <li><p class="fr-mb-1w">nous vous recommandons d'utiliser une librairie adapté à votre langage :</p>
+      <ul class="fr-ml-3w">
+        <li>Python : oic</li>
+        <li>Node.js : passport-openidconnect</li>
+        <li>Ruby : omniauth-openid-connect</li>
+        <li>PHP : league/openid-client</li>
+      </ul></li>
+      <li><p class="fr-mb-1w">Ajoutez un bouton de connexion  sur votre site, et lorsqu'un utilisateur clique dessus, utilisez la librairie pour rediriger l'utilisateur vers la page d'autorisation Keycloak.</p></li>
+      <li><p class="fr-mb-1w">Lorsque l'utilisateur valide son code d'authentification, Keycloak le redirigera vers votre site avec un jeton d'accès. Utilisez la librairie pour échanger ce jeton contre un jeton d'accès et un jeton de rafraîchissement.</p></li>
+    </ol>
+    <h3 class="fr-mb-2w fr-mt-4w">Diagramme des échanges entre l'utilisateur, votre service et Authentification :</h4>
+    <img src="/images/authentification_diagram.svg" alt="Diagramme des interaction entre l'utilisateur un service web et la platforme d'Authentification"/>
+    
+
+
+    <h3 class="fr-mt-5w fr-mb-3w">Exemple d'implémentation en node.js avec passport.js</h3>
     <p class="fr-mb-1w">Installez les dépendances nécessaires en utilisant npm :</p>
     <pre><code class="language-none">npm install express passport passport-openidconnect</code></pre>
-    
     <p class="fr-mt-3w fr-mb-3w">Configurez le fournisseur d'identité Keycloak en tant que fournisseur d'OpenID Connect dans votre application.
     Vous aurez besoin des URL du serveur d'authentification, ici un serveur générique Keycloak.</p>
-    
     <p class="fr-mb-1w">Configurez Passport.js et passport-openidconnect pour utiliser Keycloak comme fournisseur d'identité :</p>
     <pre><code class="language-js">
         const passport = require('passport');
