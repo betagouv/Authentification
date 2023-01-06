@@ -23,31 +23,37 @@
                         <p class="fr-header__service-tagline"></p>
                     </div>
                 </div>
-
-
                 <div class="fr-header__tools">
                     <div class="fr-header__tools-links">
                         <ul class="fr-links-group">
+                            <li>
+                                <a class="fr-link" href="/documentation" data-probe-name="pem">Documentation</a>
+                            </li>
+                            <li>
+                                <a class="fr-link" href="/fonctionnement" data-probe-name="contact">Fonctionnement</a>
+                            </li>
+                            <li>
+                                <a class="fr-link" href="/glossaire" data-probe-name="faq">Glossaire</a>
+                            </li>
                             <% if (user) { %>
-                                <li>
-                                    <span class="fr-link" href="">
-                                        Connecté en tant que : <%= user %>
-                                    </span>
-                                </li>
-                                <li>
-                                    <a class="fr-link fr-icon-logout-box-r-fill" href="/logout">
-                                        Déconnexion
-                                    </a>
-                                </li>
+                            <li>
+                                <span class="fr-link" href="">
+                                    Connecté en tant que : <%= user %>
+                                </span>
+                            </li>
+                            <li>
+                                <a class="fr-link fr-icon-logout-box-r-fill" href="/logout">
+                                    Déconnexion
+                                </a>
+                            </li>
                             <% } else { %>
-                                <li>
-                                    <a class="fr-link fr-link--lg" href="<%= loginUrl %>">Connexion avec Authentification</a>
-                                </li>
+                            <li>
+                                <a class="fr-link fr-link--lg" href="<%= loginUrl %>">Connexion avec Authentification</a>
+                            </li>
                             <% } %>
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
