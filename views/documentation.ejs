@@ -1,5 +1,89 @@
-<%- include('partials/skiplink.ejs'); %> <%- include('partials/header.ejs'); %> <%- include('partials/menu.ejs', {}); %> 
+<%- include('partials/header.ejs'); %> 
+<%- include('partials/skiplink.ejs'); %>
+<%- include('partials/menu.ejs'); %> 
 <div class="fr-container">
-    <h1 class="fr-grid-row fr-py-5w">Documentation</h1>
+    <h1 class="fr-grid-row fr-mt-5w fr-mb-2w">Documentation</h1>
+    <h3 class="fr-mb-2w fr-mt-4w">Introduction</h3>
+    <p class="fr-mb-1w">OpenID est un protocole d'authentification qui permet à un utilisateur de s'authentifier sur différents sites web en utilisant un seul compte. Keycloak est une plateforme open source qui peut être utilisée pour mettre en place une librairie d'authentification avec OpenID.</p>
+    <em>N'hésitez pas à nous poser des questions directement à cette adresse:
+      <a href="mailto:authentification@beta.gouv.fr">authentification@beta.gouv.fr</a>
+    </em>
+    <h3 class="fr-mb-2w fr-mt-4w">Prérequis</h3>
+    <p class="fr-mb-1w">Pour bénéficier d'Authentification votre service doit connecter des agents publics disposant 
+      d'une adresse mail officielle, et/ou d'un compte Tchap.</p>
+    <p class="fr-mb-1w">Ce que vous devez nous fournir :</p>
+      <ul class="fr-ml-3w">
+        <li>un nom qui servira d'identifiant pour le service</li>
+        <li>une url de retour ou "callback"</li>
+        <li>une adresse mail pour le support</li>
+        <li>les identifiants d'un compte Tchap, si vous voulez avoir un bot personnalisé</li>
+      </ul>
+    <h3 class="fr-mb-2w fr-mt-4w">Premiers échanges d'informations :</h3>
+      <ol class="fr-ml-3w">
+        <li>Transmettez-nous le nom de domaine de votre site et l'url de retour qui servira à la réponse du serveur Keycloak.</li>
+        <li>Nous pourrons alors vous communiquer les urls nécessaires à l'implémentation, ainsi que l'identifiant et le secret associé pour configurer votre client.</li>
+      </ol>
+    <h3 class="fr-mb-2w fr-mt-4w">Intégration de l'authentification de votre côté :</h3>
+    <ol class="fr-ml-3w">
+      <li><p class="fr-mb-1w">nous vous recommandons d'utiliser une librairie adapté à votre langage :</p>
+      <ul class="fr-ml-3w">
+        <li>Python : oic</li>
+        <li>Node.js : passport-openidconnect</li>
+        <li>Ruby : omniauth-openid-connect</li>
+        <li>PHP : league/openid-client</li>
+      </ul></li>
+      <li><p class="fr-mb-1w">Ajoutez un bouton de connexion  sur votre site, et lorsqu'un utilisateur clique dessus, utilisez la librairie pour rediriger l'utilisateur vers la page d'autorisation Keycloak.</p></li>
+      <li><p class="fr-mb-1w">Lorsque l'utilisateur valide son code d'authentification, Keycloak le redirigera vers votre site avec un jeton d'accès. Utilisez la librairie pour échanger ce jeton contre un jeton d'accès et un jeton de rafraîchissement.</p></li>
+    </ol>
+    <h3 class="fr-mb-2w fr-mt-4w">Diagramme des échanges entre l'utilisateur, votre service et Authentification :</h4>
+    <img src="/images/authentification_diagram.svg" alt="Diagramme des interaction entre l'utilisateur un service web et la platforme d'Authentification"/>
+    
+
+
+    <h3 class="fr-mt-5w fr-mb-3w">Exemple d'implémentation en node.js avec passport.js</h3>
+    <p class="fr-mb-1w">Installez les dépendances nécessaires en utilisant npm :</p>
+    <pre><code class="language-none">npm install express passport passport-openidconnect</code></pre>
+    <p class="fr-mt-3w fr-mb-3w">Configurez le fournisseur d'identité Keycloak en tant que fournisseur d'OpenID Connect dans votre application.
+    Vous aurez besoin des URL du serveur d'authentification, ici un serveur générique Keycloak.</p>
+    <p class="fr-mb-1w">Configurez Passport.js et passport-openidconnect pour utiliser Keycloak comme fournisseur d'identité :</p>
+    <pre><code class="language-js">
+        const passport = require('passport');
+        const OIDCStrategy = require('passport-openidconnect').Strategy;
+
+        passport.use('oidc', new OIDCStrategy({
+            issuer: 'https://keycloak.example.com/auth/realms/myrealm',
+            authorizationURL: 'https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/auth',
+            tokenURL: 'https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/token',
+            userInfoURL: 'https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/userinfo',
+            clientID: 'my-client-id',
+            clientSecret: 'my-client-secret',
+            callbackURL: 'http://www.monservice.fr/auth/callback'
+          }, (issuer, sub, profile, accessToken, refreshToken, done) => {
+            // process the login and return the user profile
+            return done(null, profile);
+          }));
+    </code></pre>
+
+    <p class="fr-mt-4w fr-mb-1w">Créez une route de redirection vers Keycloak pour démarrer l'authentification :</p>
+    <pre><code class="language-js">app.get('/login', passport.authenticate('oidc'));</code></pre>
+   
+    <p class="fr-mt-4w fr-mb-1w">Créez une route de callback pour traiter la réponse d'authentification de Keycloak une fois l'authentification terminée :</p>
+    <pre><code class="language-js">
+        app.get('/auth/callback', passport.authenticate('oidc', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+          }));
+    </code></pre>
+    <p class="fr-mt-4w fr-mb-1w">Protégez les routes de votre application en vérifiant si l'utilisateur est authentifié avant de permettre l'accès:</p>
+    <pre><code class="language-js">
+        app.get('/protected', (req, res, next) => {
+            if (!req.isAuthenticated()) {
+              return res.redirect('/login');
+            }
+            // continue processing the request if the user is authenticated
+            next();
+          });
+    </code></pre>
+    <p class="fr-mt-4w fr-mb-8w">Vous pouvez également utiliser des sessions pour stocker l'état d'authentification de l'utilisateur entre les requêtes. Pour ce faire, installez et configurez le middleware de session de votre choix (par exemple, express-session)</p>
 </div>
 <%- include('partials/footer.ejs') %>

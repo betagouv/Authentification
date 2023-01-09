@@ -1,5 +1,6 @@
-<%- include('partials/skiplink.ejs'); %> <%- include('partials/header.ejs'); %> <%- include('partials/menu.ejs',
-{userEmail: userEmail}, {loginUrl: loginUrl}); %> 
+<%- include('partials/skiplink.ejs'); %> 
+<%- include('partials/header.ejs'); %> 
+<%- include('partials/menu.ejs'); %> 
 <div>
   <div class="fr-background-alt--blue-france fr-py-5w" id="contenu">
     <div class="fr-container">
@@ -13,6 +14,90 @@
   </div>
   <%- include('partials/eligibility.ejs') %>
   <%- include('partials/explanation.ejs') %>
+  <div class="fr-highlight fr-mx-16w fr-mb-6w">
+    <p>
+        Authentification est un service d'authentification pour les agent·e·s publics. Il fonctionne sans création de compte ni de mot de passe. Il vous suffira d'entrer votre adresse mail professionnelle et le service vous renverra un code à usage unique sur votre boite mail et/ou sur votre compte Tchap (messagerie instantanée de l'Etat).
+    </p>
+  </div>
+  <div
+  class="fr-table fr-mx-16w"
+  data-fr-js-table="true"
+  style="--table-offset: calc(32px + 1rem)"
+  >
+      <table data-fr-js-table-element="true">
+          <caption data-fr-js-table-caption="true">
+          Comparaison des offres existantes
+          </caption>
+          <thead>
+              <tr>
+                  <th scope="col">Vos utilisateurs</th>
+                  <th scope="col" class="highlighted_column">Authentification</th>
+                  <th scope="col">MonComptePro</th>
+                  <th scope="col">FranceConnect</th>
+                  <th scope="col">AgentConnect</th>
+                  <th scope="col">ProSantéConnect</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>Particuliers</td>
+                  <td class="highlighted_column text-center">❌</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">✅</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+              </tr>
+              <tr>
+                  <td>Professionnels</td>
+                  <td class="highlighted_column text-center">❌</td>
+                  <td class="text-center">✅</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+              </tr>
+              <tr>
+                  <td>Professionnels de santé</td>
+                  <td class="highlighted_column text-center">❌</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">✅</td>
+              </tr>
+              <tr>
+                  <td>Entreprises</td>
+                  <td class="highlighted_column text-center">❌</td>
+                  <td class="text-center">✅</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+              </tr>
+              <tr>
+                  <td>Agents de l'administration centrale</td>
+                  <td class="highlighted_column text-center">✅</td>
+                  <td class="text-center">✅</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">✅</td>
+                  <td class="text-center">❌</td>
+              </tr>
+              <tr>
+                  <td>Agents de la fonction publique hospitalière</td>
+                  <td class="highlighted_column text-center">✅</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+              </tr>
+              <tr>
+                  <td>Agents des collectivités territoriales</td>
+                  <td class="highlighted_column text-center">✅</td>
+                  <td class="text-center">✅</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+                  <td class="text-center">❌</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
   <%- include('partials/contact.ejs') %>
 </div>
 <%- include('partials/footer.ejs') %>

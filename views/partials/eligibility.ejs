@@ -28,17 +28,17 @@
           </div>
         </div>
       </div>
-      <% if (!userEmail) { %>
+      <% if (!user) { %>
       <div class="fr-col-6 fr-p-5w">
         <h2 class="fr-h3">Essayez de vous connecter avec Authentification</h2>
         <p class="fr-mb-1w">Découvrez le parcours d'Authentification</p>
         <a class="fr-link fr-link--lg" href="<%= loginUrl %>">Connexion avec Authentification</a>
       </div>
       <% } %>
-      <% if (userEmail) { %>
+      <% if (user) { %>
         <div class="fr-col-6 fr-p-5w">
           <p class="fr-mb-1w fr-h3">🎉 Authentification réussie 🎉</p>
-          <p class="fr-mb-1w">Vous êtes actuellement connecté·e grâce à Authentification avec l'adresse mail <%= userEmail %> ! </p>
+          <p class="fr-mb-1w">Vous êtes actuellement connecté·e grâce à Authentification avec l'adresse mail <%= user %> ! </p>
         </div>
       <% } %>
 

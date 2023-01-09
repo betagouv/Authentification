@@ -1,22 +1,14 @@
 import { RequestHandler, Request, Response } from "express";
 import { appUrl } from "../config/config";
-import { getClient } from "./demo";
+
+global.loginUrl = appUrl + "/login";
 
 export const homeController: RequestHandler = async (
   req: Request,
   res: Response
 ) => {
-  let userEmail: string | null = null;
-  if (req.session.access_token) {
-    const client = await getClient();
-    const userinfo = await client.userinfo(req.session.access_token);
-    userEmail = userinfo.preferred_username || userinfo.sub;
-  }
-
   return res.render("home", {
-    loginUrl: appUrl + "/login",
     emailDefault: process.env.EMAIL_DEFAULT || "aaa.bbb@beta.gouv.fr",
-    userEmail,
   });
 };
 
@@ -46,4 +38,11 @@ export const statistiquesController: RequestHandler = async (
   res: Response
 ) => {
   return res.render("statistiques", {});
+};
+
+export const glossaireController: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
+  return res.render("glossaire", {});
 };
