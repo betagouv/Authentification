@@ -27,7 +27,7 @@ const server = () => {
       secret: sessionSecret,
       resave: false,
       saveUninitialized: true,
-      cookie: { secure: true },
+      cookie: { secure: false },
     })
   );
 
