@@ -29,5 +29,3 @@ cp .env.sample .env
 - Lancer le serveur en local : `npm run-script dev`
 
 **http://localhost:3000 is ready !**
-
-![alt text](https://s12.aconvert.com/convert/p3r68-cdx67/awpdv-fhwwz.svg)
