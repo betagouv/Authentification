@@ -12,9 +12,8 @@
         </div>
     </div>
   </div>
-  <%- include('partials/eligibility.ejs') %>
   <%- include('partials/explanation.ejs') %>
-  <div class="fr-highlight fr-mx-16w fr-mb-6w">
+  <div class="fr-highlight fr-mx-16w fr-mb-6w ">
     <p>
         Authentification est un service d'authentification pour les agent·e·s publics. Il fonctionne sans création de compte ni de mot de passe. Il vous suffira d'entrer votre adresse mail professionnelle et le service vous renverra un code à usage unique sur votre boite mail et/ou sur votre compte Tchap (messagerie instantanée de l'Etat).
     </p>
@@ -36,6 +35,7 @@
                   <th scope="col">FranceConnect</th>
                   <th scope="col">AgentConnect</th>
                   <th scope="col">ProSantéConnect</th>
+                  <th scope="col">Inclusion Connect</th>
               </tr>
           </thead>
           <tbody>
@@ -46,6 +46,7 @@
                   <td class="text-center">✅</td>
                   <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
+                  <td class="text-center">✅</td>
               </tr>
               <tr>
                   <td>Professionnels</td>
@@ -54,6 +55,7 @@
                   <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
+                  <td class="text-center">✅</td>
               </tr>
               <tr>
                   <td>Professionnels de santé</td>
@@ -61,6 +63,7 @@
                   <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
+                  <td class="text-center">✅</td>
                   <td class="text-center">✅</td>
               </tr>
               <tr>
@@ -70,6 +73,7 @@
                   <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
+                  <td class="text-center">✅</td>
               </tr>
               <tr>
                   <td>Agents de l'administration centrale</td>
@@ -78,10 +82,12 @@
                   <td class="text-center">❌</td>
                   <td class="text-center">✅</td>
                   <td class="text-center">❌</td>
+                  <td class="text-center">✅</td>
               </tr>
               <tr>
                   <td>Agents de la fonction publique hospitalière</td>
                   <td class="highlighted_column text-center">✅</td>
+                  <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
@@ -94,12 +100,34 @@
                   <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
                   <td class="text-center">❌</td>
+                  <td class="text-center">✅</td>
               </tr>
           </tbody>
       </table>
-    <h2 class="fr-tile__title">Personnalisation de la solution :</h2>
+    <h4>En quelques mots</h4>
+    <dl>
+        <dt><a href="">Mon compte pro</a></dt>
+            <dd>Nécéssite d'inscire une structure et d'en déclarer les utilisateurs, authentification par mot de passe ou par lien magique.</dd>
+        <dt><a href="">FranceConnect</a></dt>
+            <dd>Service d'identification disponible pour tous les particuliers</dd>
+        <dt><a href="https://agentconnect.gouv.fr/">AgentConnect</a></dt>
+            <dd>Service d’identification des agents</dd>
+        <dt><a href="https://esante.gouv.fr/produits-services/pro-sante-connect">ProSantéConnect</a></dt>
+            <dd>Service d'authentification en openid basé sur une fédération de fournisseur d'identité, dans le domaine de la santé. </dd>
+        <dt><a href="https://beta.gouv.fr/startups/inclusion.connect.html">Inclusion Connect</a></dt>
+            <dd>Service d’identification unique pour les services du GIP plateforme de l'inclusion. </dd>
+    </dl>
+    <div class="fr-highlight fr-mx-16w fr-my-6w ">
+        <p>
+            Contrairement aux autres solutions, Authentification ne requiert pas la réation de compte. 
+            Et ne renvoie pas plus d'information sur l'identité de la personne que ce qui lui a été soumis (adresse email).
+            En utilisant Authentification sur votres service, vous obtenez juste la preuve que l'utilisateur à reçu un code sur sa messagerie.
+        </p>
+    </div>
+
+    <h4>Personnalisation de la solution :</h4>
     <p>
-        L'interface d'Authentification peut être en marque blanche, avec le nom de votre service.<br>
+        L'interface d'Authentification peut être en marque blanche, et ainsi afficher le nom de votre service.<br>
         De même, les mails et/ou message Tchap peuvent être envoyés avec votre compte mail de votre service, avec le nom de votre service dans les titres des messages.<br>
         Pour faciliter l'intégration à une solution existante, nous proposons deux flux d'intégration&nbsp;:
         </p>
@@ -113,6 +141,7 @@
         </ol>
         
   </div>
+  <%- include('partials/eligibility.ejs') %>
   <%- include('partials/contact.ejs') %>
 </div>
 <%- include('partials/footer.ejs') %>
