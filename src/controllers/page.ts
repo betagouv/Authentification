@@ -12,13 +12,6 @@ export const homeController: RequestHandler = async (
   });
 };
 
-export const fonctionnementController: RequestHandler = async (
-  req: Request,
-  res: Response
-) => {
-  return res.render("fonctionnement", {});
-};
-
 export const ressourcesController: RequestHandler = async (
   req: Request,
   res: Response
