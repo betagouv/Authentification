@@ -4,115 +4,15 @@
 <div>
   <div class="fr-background-alt--blue-france fr-py-5w" id="contenu">
     <div class="fr-container">
-      <h1 class="fr-grid-row text-center fr-pl-5w">Pourquoi s'identifier en tant qu'agent ?</h1>
-        <div class="fr-m-6w">
-          Authentification est un service qui permet aux agents et agentes de
-          l'état de pouvoir s'identifier à différents services numériques
-          grâce à un code reçu par Tchap ou par email. <br>Si vous souhaitez des informations sur notre service ou l'intégrer à votre administration, merci de nous contacter à l'adresse mail <a href="mailto:authentification@beta.gouv.fr">authentification@beta.gouv.fr</a>
+        <div class="fr-container">
+            <h1 class="fr-grid-row fr-pl-5w fr-mt-2w fr-h2">Authentification simple et rapide pour tous les agents publics.</h1>
+            <h2 class="fr-grid-row text-center fr-pl-5w fr-h4">Sans inscription.</h2>
+            <h2 class="fr-grid-row text-center fr-pl-5w fr-h4">Sans mot de passe.</h2>
         </div>
     </div>
   </div>
-  <%- include('partials/eligibility.ejs') %>
   <%- include('partials/explanation.ejs') %>
-  <div class="fr-highlight fr-mx-16w fr-mb-6w">
-    <p>
-        Authentification est un service d'authentification pour les agent·e·s publics. Il fonctionne sans création de compte ni de mot de passe. Il vous suffira d'entrer votre adresse mail professionnelle et le service vous renverra un code à usage unique sur votre boite mail et/ou sur votre compte Tchap (messagerie instantanée de l'Etat).
-    </p>
-  </div>
-  <div
-  class="fr-table fr-mx-16w"
-  data-fr-js-table="true"
-  style="--table-offset: calc(32px + 1rem)"
-  >
-      <table class="fr-mb-4w" data-fr-js-table-element="true">
-          <caption data-fr-js-table-caption="true">
-          Comparaison des offres existantes
-          </caption>
-          <thead>
-              <tr>
-                  <th scope="col">Vos utilisateurs</th>
-                  <th scope="col" class="highlighted_column">Authentification</th>
-                  <th scope="col">MonComptePro</th>
-                  <th scope="col">FranceConnect</th>
-                  <th scope="col">AgentConnect</th>
-                  <th scope="col">ProSantéConnect</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>Particuliers</td>
-                  <td class="highlighted_column text-center">❌</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">✅</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-              </tr>
-              <tr>
-                  <td>Professionnels</td>
-                  <td class="highlighted_column text-center">❌</td>
-                  <td class="text-center">✅</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-              </tr>
-              <tr>
-                  <td>Professionnels de santé</td>
-                  <td class="highlighted_column text-center">❌</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">✅</td>
-              </tr>
-              <tr>
-                  <td>Entreprises</td>
-                  <td class="highlighted_column text-center">❌</td>
-                  <td class="text-center">✅</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-              </tr>
-              <tr>
-                  <td>Agents de l'administration centrale</td>
-                  <td class="highlighted_column text-center">✅</td>
-                  <td class="text-center">✅</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">✅</td>
-                  <td class="text-center">❌</td>
-              </tr>
-              <tr>
-                  <td>Agents de la fonction publique hospitalière</td>
-                  <td class="highlighted_column text-center">✅</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-              </tr>
-              <tr>
-                  <td>Agents des collectivités territoriales</td>
-                  <td class="highlighted_column text-center">✅</td>
-                  <td class="text-center">✅</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-                  <td class="text-center">❌</td>
-              </tr>
-          </tbody>
-      </table>
-    <h2 class="fr-tile__title">Personnalisation de la solution :</h2>
-    <p>
-        L'interface d'Authentification peut être en marque blanche, avec le nom de votre service.<br>
-        De même, les mails et/ou message Tchap peuvent être envoyés avec votre compte mail de votre service, avec le nom de votre service dans les titres des messages.<br>
-        Pour faciliter l'intégration à une solution existante, nous proposons deux flux d'intégration&nbsp;:
-        </p>
-        <ol>
-            <li>
-                Vous ne disposez pas de formulaire d'identification avec adresse email, vous pouvez utiliser celui offert par Authentification.
-            </li>
-            <li>
-                Ou, comme sur Audioconf, vous envoyez la demande d'authentification au moment qui vous convient dans votre processus.
-            </li>
-        </ol>
-        
-  </div>
+  <%- include('partials/eligibility.ejs') %>
   <%- include('partials/contact.ejs') %>
 </div>
 <%- include('partials/footer.ejs') %>
