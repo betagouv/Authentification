@@ -6,7 +6,6 @@ import {
 } from "./controllers/demo";
 import {
   statistiquesController,
-  fonctionnementController,
   homeController,
   ressourcesController,
   documentationController,
@@ -19,7 +18,6 @@ demoRouter.get("/", homeController);
 demoRouter.get("/login", loginController);
 demoRouter.get("/cb", callbackController);
 demoRouter.get("/logout", logoutController);
-demoRouter.get("/fonctionnement", fonctionnementController);
 demoRouter.get("/ressources", ressourcesController);
 demoRouter.get("/documentation", documentationController);
 demoRouter.get("/statistiques", statistiquesController);
