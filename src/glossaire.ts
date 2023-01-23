@@ -34,7 +34,7 @@ export const glossaire = [
     title: "OpenID",
     link: "https://fr.wikipedia.org/wiki/OpenID",
     desc: `OpenID est un standard de communication qui permet à un utilisateur de s’authentifier auprès de plusieurs sites. 
-    Basé sur l'échange d'une preuve d'authenticité (un secret partagé) entre le serveur d'authentification (fournisseur d'identité) et les services tiers sur les quels l'utilisateurs souhaitent se connecter.`,
+    Basé sur l'échange d'une preuve d'authenticité (un secret partagé) entre le serveur d'authentification (fournisseur d'identité) et les services tiers sur lesquels l'utilisateur souhaite se connecter.`,
   },
   {
     title: "Fournisseur de service",
