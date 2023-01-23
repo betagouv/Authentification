@@ -12,7 +12,7 @@ export const glossaire = [
     title: "OTP",
     link: "https://fr.wikipedia.org/wiki/Mot_de_passe_%C3%A0_usage_unique",
     desc: `signifie « One–Time Password » en anglais, est un « Mot de passe à usage unique » comme son nom l'indique en français. 
-    Il est généré pour être utilisé et valable que lors d’une unique session.`,
+    Il est généré pour être utilisé et valable lors d’une unique session.`,
   },
   {
     title: "Matrix",
