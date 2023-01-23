@@ -47,7 +47,7 @@ export const glossaire = [
     desc: `L'authentification forte repose sur des méthodes considérées comme plus sûres que la méthode mémorielle : mot de passe à usage unique, certificat numérique ou données biométriques.`,
   },
   {
-    title: "Authentification à deux facteurs",
+    title: "Double authentification",
     link: "https://fr.wikipedia.org/wiki/Double_authentification",
     desc: `Également appelé authentification à deux facteurs (2FA en anglais), cette authentification permet de sécuriser l'accès à un service en complétant l'accès par mot de passe traditionnel par une méthode dite d'authentification forte.`,
   },
