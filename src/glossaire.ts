@@ -39,7 +39,7 @@ export const glossaire = [
   {
     title: "Fournisseur de service",
     link: "https://fr.wikipedia.org/wiki/OpenID#Acteurs",
-    desc: `Le forunisseur de service est l'application qui dexige une preuve de l’identité de l’utilisateur via un système fédéré d'authentification. Il délègue ainsi cette tache à ce dernier.`,
+    desc: `Le forunisseur de service est l'application qui dexige une preuve de l’identité de l’utilisateur via un système fédéré d'authentification. Il délègue ainsi cette tâche à ce dernier.`,
   },
   {
     title: "Authentification forte",
