@@ -1,57 +1,20 @@
 <%- include('partials/skiplink.ejs'); %> <%- include('partials/header.ejs'); %> <%- include('partials/menu.ejs', {}); %> 
 <div class="fr-container">
-  <h1 class="fr-grid-row fr-py-5w">Glossaire du vocabulaire d'Authentification</h1>
-  
-
+  <h1 class="fr-grid-row fr-pt-5w fr-pb-2w">Glossaire du vocabulaire d'Authentification</h1>
+  <p class="fr-pb-3w">L'univers de l'authentification est complexe à appréhender, voici quelques définitions accompagnés de liens.</p>
   <!-- Tuiles verticales placées dans la grille -->
 
   <div class="fr-grid-row fr-grid-row--gutters fr-mb-4w">
-    <div class="fr-col-6 fr-col-md-4 fr-col-lg-3">
-        <div class="fr-tile fr-enlarge-link">
-            <div class="fr-tile__body">
-                <h2 class="fr-tile__title">OTP</h2>
-                <p class="fr-tile__desc">signifie « One–Time Password » en anglais, est un « Mot de passe à usage unique » comme son nom l'indique en français. Il est généré pour être utilisé et valable que lors d’une unique session.</p>
+    <% glossaire.forEach(function(item){ %>
+        <div class="fr-col-6 fr-col-md-4 fr-col-lg-4 fr-col-xl-3">
+            <div class="fr-tile fr-enlarge-link">
+                <div class="fr-tile__body">
+                    <h2 class="fr-tile__title"><a href="<%= item.link %>"><%= item.title %></a></h2>
+                    <p class="fr-tile__desc"><%= item.desc %></p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="fr-col-6 fr-col-md-4 fr-col-lg-3">
-        <div class="fr-tile fr-enlarge-link">
-            <div class="fr-tile__body">
-                <h2 class="fr-tile__title">Magic link :</h2>
-                <p class="fr-tile__desc">Le magic link est un lien à usage unique envoyé à l'utilisateur durant le process d'authentification. Il permet de se connecter à un service sans avoir à rentrer de mot de passe, d'où le nom de "magic link".</p>
-            </div>
-        </div>
-    </div>
-    <div class="fr-col-6 fr-col-md-4 fr-col-lg-3">
-        <div class="fr-tile fr-enlarge-link">
-            <div class="fr-tile__body">
-                <h2 class="fr-tile__title">France Connect :</h2>
-                <p class="fr-tile__desc">Service d'identifiction et d'authentification mettant en relation différents fournisseurs d'identité pour accéder à différents fournisseurs de services.</p>
-            </div>
-        </div>
-    </div>
-    <div class="fr-col-6 fr-col-md-4 fr-col-lg-3">
-        <div class="fr-tile fr-enlarge-link">
-            <div class="fr-tile__body">
-                <h2 class="fr-tile__title">Authentifier vs Identifier :</h2>
-                <p class="fr-tile__desc">S'identifier c'est déclarer quelque chose.
-                S'authentifier c'est apporter la preuve de ce qu'on déclare.</p>
-            </div>
-        </div>
-    </div>
-    <div class="fr-col-6 fr-col-md-4 fr-col-lg-3">
-      <div class="fr-tile fr-enlarge-link">
-          <div class="fr-tile__body">
-              <h2 class="fr-tile__title">OpenID :</h2>
-              <p class="fr-tile__desc">OpenID est un standard de communication qui permet à un utilisateur de s’authentifier auprès de plusieurs sites.
-              Basé sur l'échange d'une preuve d'authenticité (un secret partagé) entre le serveur d'authentification (fournisseur d'identité) et les services tiers sur les quels l'utilisateurs souhaitent se connecter.</p>
-          </div>
-      </div>
-    </div>
+    <% }); %>
   </div>
-
-
-
-
 </div>
 <%- include('partials/footer.ejs') %>
