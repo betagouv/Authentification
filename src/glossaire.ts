@@ -44,7 +44,7 @@ export const glossaire = [
   {
     title: "Authentification forte",
     link: "https://fr.wikipedia.org/wiki/Authentification_forte",
-    desc: `L'authentification forte repose sur des méthodes considérées comme plus sûr que la méthode mémoriel : le mote de passe unique à usage unique, le certficat numérique ou les données biométriques.`,
+    desc: `L'authentification forte repose sur des méthodes considérées comme plus sûres que la méthode mémorielle : mot de passe à usage unique, certificat numérique ou données biométriques.`,
   },
   {
     title: "Authentification à deux facteurs",
