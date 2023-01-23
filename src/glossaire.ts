@@ -23,7 +23,7 @@ export const glossaire = [
   {
     title: "France Connect",
     link: "https://fr.wikipedia.org/wiki/FranceConnect",
-    desc: `Service d'identifiction et d'authentification mettant en relation différents fournisseurs d'identité pour accéder à différents fournisseurs de services.`,
+    desc: `Service d'identification et d'authentification mettant en relation différents fournisseurs d'identité pour accéder à différents fournisseurs de services.`,
   },
   {
     title: "Authentifier vs Identifier",
