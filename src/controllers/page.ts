@@ -1,5 +1,6 @@
 import { RequestHandler, Request, Response } from "express";
 import { appUrl } from "../config/config";
+import { glossaire } from "../glossaire";
 
 global.loginUrl = appUrl + "/login";
 
@@ -37,5 +38,5 @@ export const glossaireController: RequestHandler = async (
   req: Request,
   res: Response
 ) => {
-  return res.render("glossaire", {});
+  return res.render("glossaire", { glossaire });
 };
