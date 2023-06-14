@@ -2,7 +2,7 @@
 <div class="fr-container">
     <div class="fr-grid-row fr-pb-6w" >
       <div class="fr-col-12 fr-p-5w">
-        <h2 class="fr-h4">Testez l'égibilité d'une adresse mail :</h2>
+        <h2 class="fr-h4" id="test_eligibilite">Testez l'égibilité d'une adresse mail :</h2>
         <div class="fr-container fr-px-0">
           <div class="fr-grid-row">
              <div class="fr-col-12">
@@ -17,7 +17,7 @@
                       </button>
                     </div>
                     <div id="eligibility-wrapper" aria-live="polite" aria-atomic="true">
-                      <p id="eligible" class="js-eligibility-hidden fr-mt-3w fr-mb-0 fr-h6">✨ Vous êtes éligibles ! ✨</p>
+                      <p id="eligible" class="js-eligibility-hidden fr-mt-3w fr-mb-0 fr-h6">✨ Vous êtes éligible ! ✨</p>
                       <p id="notEligible" class="js-eligibility-hidden fr-mt-3w fr-mb-0 fr-h6">Votre administration n'est pas encore éligible 🥹</p>
                       <p id="fillYourEmail" class="js-eligibility-hidden fr-mt-3w fr-mb-0 fr-h6">Merci de renseigner votre email ✉️</p>
                     </div>
@@ -26,19 +26,6 @@
           </div>
         </div>
       </div>
-      <%# if (!user) { %>
-      <!-- <div class="fr-col-6 fr-p-5w">
-        <h2 class="fr-h4">Découvrez le parcours utilisateur d'Authentification</h2>
-        <a class="fr-link fr-link--lg" href="<%= loginUrl %>">Connexion avec Authentification</a>
-      </div> -->
-      <%# } %>
-      <%# if (user) { %>
-        <!-- <div class="fr-col-6 fr-p-5w">
-          <p class="fr-mb-1w fr-h3">🎉 Authentification réussie 🎉</p>
-          <p class="fr-mb-1w">Vous êtes actuellement connecté·e grâce à Authentification avec l'adresse mail <%= user %> ! </p>
-        </div> -->
-      <%# } %>
-
     </div>
   </div>
 </div>
